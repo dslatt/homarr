@@ -37,15 +37,17 @@ export class PiHoleClient {
     return response.status === 'enabled';
   }
 
-  async disable() {
-    const response = await this.sendStatusChangeRequest('disable');
+  async disable(duration = 0) {
+    const response = await this.sendStatusChangeRequest('disable', duration);
     return response.status === 'disabled';
   }
 
   private async sendStatusChangeRequest(
-    action: 'enable' | 'disable'
+    action: 'enable' | 'disable',
+    duration = 0,
   ): Promise<PiHoleApiStatusChangeResponse> {
     const response = await fetch(
+      duration !== 0 ? `${this.baseHostName}/admin/api.php?${action}=${duration}&auth=${this.apiToken}` :
       `${this.baseHostName}/admin/api.php?${action}&auth=${this.apiToken}`
     );
 

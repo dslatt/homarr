@@ -59,8 +59,8 @@ export class AdGuard {
       .reduce((sum, filter) => filter.rules_count + sum, 0);
   }
 
-  async disable() {
-    await this.changeProtectionStatus(false);
+  async disable(duration = 0) {
+    await this.changeProtectionStatus(false, duration);
   }
   async enable() {
     await this.changeProtectionStatus(true);
