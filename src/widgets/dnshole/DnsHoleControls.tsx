@@ -124,10 +124,11 @@ function DnsHoleControlsWidgetTile({ widget }: DnsHoleControlsWidgetProps) {
     return dnsList;
   };
 
-  const toggleDns = async (action: 'enable' | 'disable', appsToChange?: string[]) => {
+  const toggleDns = async (action: 'enable' | 'disable', appsToChange?: string[], duration: number = 0) => {
     await mutateAsync(
       {
         action,
+        duration,
         configName,
         appsToChange,
       },

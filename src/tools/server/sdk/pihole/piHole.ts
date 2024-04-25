@@ -37,7 +37,7 @@ export class PiHoleClient {
     return response.status === 'enabled';
   }
 
-  async disable(duration = 0) {
+  async disable(duration: number) {
     const response = await this.sendStatusChangeRequest('disable', duration);
     return response.status === 'disabled';
   }
